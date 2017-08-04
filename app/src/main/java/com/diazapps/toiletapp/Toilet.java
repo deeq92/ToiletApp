@@ -1,10 +1,13 @@
 package com.diazapps.toiletapp;
 
+import java.util.ArrayList;
+
 public class Toilet {
 
     private String location_name;
     private String location_description;
     private double rating;
+    private ArrayList<Comments> comments;
 
 
     public String getLocation_name() {
