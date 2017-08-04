@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Toilet {
 
     private String location_name;
-    private String location_description;
+    private String location_address;
     private double rating;
     private ArrayList<Comments> comments;
 
@@ -18,12 +18,12 @@ public class Toilet {
         this.location_name = location_name;
     }
 
-    public String getLocation_description() {
-        return location_description;
+    public String getLocation_address() {
+        return location_address;
     }
 
-    public void setLocation_description(String location_description) {
-        this.location_description = location_description;
+    public void setLocation_address(String location_address) {
+        this.location_address = location_address;
     }
 
     public double getRating() {
