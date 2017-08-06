@@ -6,6 +6,8 @@ public class Toilet {
 
     private String location_name;
     private String location_address;
+    private double location_long;
+    private double location_lat
     private double rating;
     private ArrayList<Comments> comments;
 
@@ -24,6 +26,10 @@ public class Toilet {
 
     public void setLocation_address(String location_address) {
         this.location_address = location_address;
+    }
+    
+    public double location_coords(double location_long, double location_lat) {
+        this.location_coords = location_lat, location_long
     }
 
     public double getRating() {
