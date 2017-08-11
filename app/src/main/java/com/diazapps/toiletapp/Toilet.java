@@ -6,10 +6,17 @@ public class Toilet {
 
     private String location_name;
     private String location_address;
+    private String comment;
     private double rating;
     private ArrayList<Comments> comments;
 
+    public String getComment() {
+        return comment;
+    }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
     public String getLocation_name() {
         return location_name;
     }

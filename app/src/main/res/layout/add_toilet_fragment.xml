@@ -14,23 +14,25 @@
         android:scaleType="fitXY"
         app:srcCompat="@drawable/bathroom_example" />
 
-    <TextView
+    <EditText
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/pic"
         android:layout_centerHorizontal="true"
+        android:inputType="textCapSentences"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Title" />
 
-    <TextView
+    <EditText
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
+        android:inputType="textPostalAddress"
         android:textSize="18sp"
         tools:text="Address" />
 
@@ -51,5 +53,23 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rating_text"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rating"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="textCapSentences" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/description"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="Submit" />
 
 </RelativeLayout>

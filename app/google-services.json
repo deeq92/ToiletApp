@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "503535002252",
+    "firebase_url": "https://toiletapp-384e1.firebaseio.com",
+    "project_id": "toiletapp-384e1",
+    "storage_bucket": "toiletapp-384e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503535002252:android:f7c5d14c3edb021b",
+        "android_client_info": {
+          "package_name": "com.diazapps.toiletapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "503535002252-spphd6mg8br2uev4n10tjs3fm8mm65m1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.diazapps.toiletapp",
+            "certificate_hash": "5f1d59853a268ef68055fee4973180594e07325a"
+          }
+        },
+        {
+          "client_id": "503535002252-nuq1tlk3bnheo2nh2hb12ugdgabsfgbp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFJgbdMz9x4kcUqY-fg4AVbRHY-wG8K44"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "503535002252-nuq1tlk3bnheo2nh2hb12ugdgabsfgbp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
