@@ -11,6 +11,13 @@ public class Toilet {
     private double location_lat;
     private double rating;
 
+    Toilet(String title, double rating, String address, String comment){
+        location_name = title;
+        this.rating = rating;
+        location_address = address;
+        this.comment = comment;
+    }
+
     public String getComment() {
         return comment;
     }

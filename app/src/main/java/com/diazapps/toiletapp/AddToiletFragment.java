@@ -47,11 +47,11 @@ public class AddToiletFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toilet newToilet = new Toilet();
-                newToilet.setLocation_name(title.getText().toString());
-                newToilet.setLocation_address(address.getText().toString());
-                newToilet.setComment(description.getText().toString());
-                newToilet.setRating(ratingBar.getRating());
+                Toilet newToilet = new Toilet(
+                        title.getText().toString(),
+                        ratingBar.getRating(),
+                        address.getText().toString(),
+                        description.getText().toString());
                 toiletsRef.addListenerForSingleValueEvent(new AddToiletVEListener(getActivity(), newToilet));
             }
         });

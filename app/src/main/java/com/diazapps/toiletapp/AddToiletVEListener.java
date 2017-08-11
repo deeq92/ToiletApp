@@ -26,5 +26,6 @@ public class AddToiletVEListener implements ValueEventListener {
     @Override
     public void onCancelled(DatabaseError databaseError) {
 
+        //Toast.makeText(currentActivity ,"DB ERROR: Could not add or remove",Toast.LENGTH_SHORT).show();
     }
 }
