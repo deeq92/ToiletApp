@@ -7,8 +7,9 @@ public class Toilet {
     private String location_name;
     private String location_address;
     private String comment;
+    private double location_long;
+    private double location_lat;
     private double rating;
-    private ArrayList<Comments> comments;
 
     public String getComment() {
         return comment;
@@ -17,6 +18,7 @@ public class Toilet {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
     public String getLocation_name() {
         return location_name;
     }
@@ -40,4 +42,22 @@ public class Toilet {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+    public double getLocation_long() {
+        return location_long;
+    }
+
+    public void setLocation_long(double location_long) {
+        this.location_long = location_long;
+    }
+
+    public double getLocation_lat() {
+        return location_lat;
+    }
+
+    public void setLocation_lat(double location_lat) {
+        this.location_lat = location_lat;
+    }
+
+
 }

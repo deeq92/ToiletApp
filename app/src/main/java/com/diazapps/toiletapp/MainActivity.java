@@ -13,7 +13,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Fragment main = new AddToiletFragment();
+        Fragment start = new StartFragment();
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.add(R.id.main_content, main).commit();
+        transaction.add(R.id.main_content, start).commit();
     }
 }
