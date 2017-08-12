@@ -8,10 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class StartFragment extends Fragment {
 
-    Button review;
+    Button review, find;
 
     @Nullable
     @Override
@@ -23,7 +24,13 @@ public class StartFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        find = getActivity().findViewById(R.id.find_button);
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getActivity(), "Must implement in Start Frag", Toast.LENGTH_SHORT).show();
+            }
+        });
         review = getActivity().findViewById(R.id.review_button);
         review.setOnClickListener(new View.OnClickListener() {
             @Override
