@@ -15,12 +15,14 @@ import java.util.ArrayList;
 public class ToiletListVEListener implements ValueEventListener {
 
     private final ArrayList<Toilet> toiletList;
-    private final Context thisContext;
+    private final Context context;
+    ToiletListFragmentAdapter adapter;
 
     //Used to get all toilets
-    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets){
-        thisContext = context;
+    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets, ToiletListFragmentAdapter adapter){
+        this.context = context;
         toiletList = toilets;
+        this.adapter = adapter;
     }
 
     @Override
@@ -34,6 +36,7 @@ public class ToiletListVEListener implements ValueEventListener {
             String postid = node.getKey();
             toiletList.add(new Toilet(title, rating, address, description));
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override

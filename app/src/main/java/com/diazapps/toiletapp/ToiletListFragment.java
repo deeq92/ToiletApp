@@ -9,9 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+
 public class ToiletListFragment extends Fragment {
 
     RecyclerView toiletRecyclerView;
+    ToiletListFragmentAdapter toiletAdapter;
+    ArrayList<Toilet> toiletList;
 
     public ToiletListFragment() {
         // Required empty public constructor
@@ -29,6 +36,12 @@ public class ToiletListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        toiletList = new ArrayList<>();
+        DatabaseReference toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
+        toiletAdapter = new ToiletListFragmentAdapter(getContext(), toiletList);
+        ToiletListVEListener toiletListVEListener = new ToiletListVEListener(getContext(), toiletList, toiletAdapter);
+        toiletsRef.addListenerForSingleValueEvent(toiletListVEListener);
+
     }
 
     @Override
