@@ -12,11 +12,14 @@ import android.widget.Button;
 public class StartFragment extends Fragment {
 
     Button review;
+    Button map;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.start_fragment, container, false);
+        review = (Button) view.findViewById(R.id.review_button);
+        map = (Button) view.findViewById(R.id.map_button);
         return view;
     }
 
@@ -24,13 +27,21 @@ public class StartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        review = getActivity().findViewById(R.id.review_button);
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment rating = new AddToiletFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.main_content, rating).commit();
+            }
+        });
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment map = new MapFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.main_content, map).commit();
             }
         });
     }

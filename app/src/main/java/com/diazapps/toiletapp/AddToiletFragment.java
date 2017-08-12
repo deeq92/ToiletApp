@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class AddToiletFragment extends Fragment {
+
     EditText title, address, description;
     TextView ratingText;
     RatingBar ratingBar;
@@ -27,7 +28,7 @@ public class AddToiletFragment extends Fragment {
         View view = inflater.inflate(R.layout.add_toilet_fragment, container, false);
         title = (EditText) view.findViewById(R.id.title);
         address = (EditText) view.findViewById(R.id.address);
-        description = (EditText) view.findViewById(R.id.description);
+        description = (EditText) view.findViewById(R.id.comment);
         ratingText = (TextView) view.findViewById(R.id.rating_text);
         ratingBar = (RatingBar) view.findViewById(R.id.rating);
         submit = (Button) view.findViewById(R.id.button2);

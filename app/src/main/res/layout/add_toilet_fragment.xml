@@ -55,7 +55,7 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/description"
+        android:id="@+id/comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rating"
@@ -67,7 +67,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/description"
+        android:layout_below="@+id/comment"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
         android:text="Submit" />

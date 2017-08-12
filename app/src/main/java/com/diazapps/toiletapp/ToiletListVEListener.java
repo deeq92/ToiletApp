@@ -8,10 +8,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-/**
- * Created by Mellis on 8/11/2017.
- */
-
 public class ToiletListVEListener implements ValueEventListener {
 
     private final ArrayList<Toilet> toiletList;

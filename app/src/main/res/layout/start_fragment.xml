@@ -6,11 +6,11 @@
     android:background="@color/colorPrimary">
 
     <Button
-        android:id="@+id/find_button"
+        android:id="@+id/map_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/imageView"
+        android:layout_below="@+id/appicon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:backgroundTint="@color/colorPrimary2"
@@ -24,7 +24,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="false"
-        android:layout_below="@+id/find_button"
+        android:layout_below="@+id/map_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/colorPrimary3"
@@ -34,7 +34,7 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/appicon"
         android:layout_width="125dp"
         android:layout_height="125dp"
         android:layout_alignParentTop="true"
