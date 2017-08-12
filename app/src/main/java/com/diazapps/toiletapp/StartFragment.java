@@ -13,6 +13,9 @@ import android.widget.Toast;
 public class StartFragment extends Fragment {
 
     Button review, find;
+    public StartFragment() {
+        // Required empty public constructor
+    }
 
     @Nullable
     @Override
@@ -24,14 +27,17 @@ public class StartFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        find = getActivity().findViewById(R.id.find_button);
+        find = (Button) getActivity().findViewById(R.id.find_button);
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "Must implement in Start Frag", Toast.LENGTH_SHORT).show();
+                ToiletListFragment listFrag =  new ToiletListFragment();
+
+                android.support.v4.app.FragmentTransaction transaction = ().beginTransaction();
+                transaction.replace(R.id.main_content, new ToiletListFragment()).commit();
             }
         });
-        review = getActivity().findViewById(R.id.review_button);
+        review = (Button) getActivity().findViewById(R.id.review_button);
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

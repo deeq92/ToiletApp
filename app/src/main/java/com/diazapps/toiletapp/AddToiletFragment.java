@@ -21,6 +21,9 @@ public class AddToiletFragment extends Fragment {
     Button submit;
     DatabaseReference toiletsRef;
 
+    public AddToiletFragment() {
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
