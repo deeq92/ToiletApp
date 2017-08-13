@@ -1,6 +1,7 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -11,26 +12,29 @@ import java.util.ArrayList;
 public class ToiletListVEListener implements ValueEventListener {
 
     private final ArrayList<Toilet> toiletList;
-    private final Context thisContext;
+    private final Context context;
+    ToiletListFragmentAdapter adapter;
 
     //Used to get all toilets
-    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets){
-        thisContext = context;
+    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets, ToiletListFragmentAdapter adapter){
+        this.context = context;
         toiletList = toilets;
+        this.adapter = adapter;
     }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
         toiletList.clear();
-        //Add all the jobs to the array list
-        for (DataSnapshot jobNode : dataSnapshot.getChildren()) {
-            String title = (String) jobNode.child("location_name").getValue();
-            String address = (String) jobNode.child("location_address").getValue();
-            String description = (String) jobNode.child("comment").getValue();
-            double rating = (double) jobNode.child("rating").getValue();
-            String postid = jobNode.getKey();
+        for (DataSnapshot node : dataSnapshot.getChildren()) {
+            String title = (String) node.child("location_name").getValue();
+            String address = (String) node.child("location_address").getValue();
+            String description = (String) node.child("comment").getValue();
+            double rating = Double.valueOf(node.child("rating").getValue().toString());
+            String postid = node.getKey();
             toiletList.add(new Toilet(title, rating, address, description));
+            Log.d("ToiletList", title + " " + address);
         }
+        adapter.notifyDataSetChanged();
     }
 
     @Override

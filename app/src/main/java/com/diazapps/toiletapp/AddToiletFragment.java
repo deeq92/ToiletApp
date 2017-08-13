@@ -1,6 +1,6 @@
 package com.diazapps.toiletapp;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -21,6 +21,9 @@ public class AddToiletFragment extends Fragment {
     RatingBar ratingBar;
     Button submit;
     DatabaseReference toiletsRef;
+
+    public AddToiletFragment() {
+    }
 
     @Nullable
     @Override

@@ -29,7 +29,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/colorPrimary3"
         android:fontFamily="sans-serif"
-        android:text="Write a review"
+        android:text="Add New Toilet"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
 
