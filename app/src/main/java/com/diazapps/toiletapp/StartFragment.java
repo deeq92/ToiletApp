@@ -1,9 +1,10 @@
 package com.diazapps.toiletapp;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +33,10 @@ public class StartFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ToiletListFragment listFrag =  new ToiletListFragment();
+                FragmentManager fragManager = getActivity().getSupportFragmentManager(); //If using fragments from support v4
+                FragmentTransaction transaction = fragManager.beginTransaction();
 
-                android.support.v4.app.FragmentTransaction transaction = ().beginTransaction();
-                transaction.replace(R.id.main_content, new ToiletListFragment()).commit();
+                transaction.replace(R.id.main_content, listFrag).commit();
             }
         });
         review = (Button) getActivity().findViewById(R.id.review_button);

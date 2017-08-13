@@ -1,6 +1,7 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,9 +33,10 @@ public class ToiletListVEListener implements ValueEventListener {
             String title = (String) node.child("location_name").getValue();
             String address = (String) node.child("location_address").getValue();
             String description = (String) node.child("comment").getValue();
-            double rating = (double) node.child("rating").getValue();
+            double rating = Double.valueOf(node.child("rating").getValue().toString());
             String postid = node.getKey();
             toiletList.add(new Toilet(title, rating, address, description));
+            Log.d("ToiletList", title + " " + address);
         }
         adapter.notifyDataSetChanged();
     }

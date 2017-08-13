@@ -36,12 +36,12 @@ public class ToiletListFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         toiletList = new ArrayList<>();
-        DatabaseReference toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
         toiletAdapter = new ToiletListFragmentAdapter(getContext(), toiletList);
+        DatabaseReference toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
         ToiletListVEListener toiletListVEListener = new ToiletListVEListener(getContext(), toiletList, toiletAdapter);
         toiletsRef.addListenerForSingleValueEvent(toiletListVEListener);
-
     }
 
     @Override
@@ -50,17 +50,7 @@ public class ToiletListFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_toilet_list, container, false);
         toiletRecyclerView = (RecyclerView) view.findViewById(R.id.toiletRecyclerView);
+        toiletRecyclerView.setAdapter(toiletAdapter);
         return view;
     }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
 }
