@@ -45,9 +45,9 @@ public class StartFragment extends Fragment {
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment map = new MapFragment();
+                Fragment listFragment = new ToiletListFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.main_content, map).commit();
+                transaction.replace(R.id.main_content, listFragment).commit();
             }
         });
     }

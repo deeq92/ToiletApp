@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,7 @@ public class ToiletListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_toilet_list, container, false);
         toiletRecyclerView = (RecyclerView) view.findViewById(R.id.toiletRecyclerView);
         toiletRecyclerView.setAdapter(toiletAdapter);
+        toiletRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }
 }
