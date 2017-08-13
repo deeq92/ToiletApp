@@ -25,7 +25,7 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends android.support.v4.app.Fragment {
 
     private ArrayList<Toilet> toilet_list; //holds all map locations
     private MapView mapView;
