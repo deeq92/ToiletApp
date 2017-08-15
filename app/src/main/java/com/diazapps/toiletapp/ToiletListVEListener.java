@@ -30,8 +30,9 @@ public class ToiletListVEListener implements ValueEventListener {
             double rating = Double.valueOf(node.child("rating").getValue().toString());
             String address = (String) node.child("location_address").getValue();
             String description = (String) node.child("description").getValue();
-            String postid = node.getKey();
-            toiletList.add(new Toilet(name, rating, address, description));
+            Toilet t = new Toilet(name, rating, address, description);
+            t.setId(node.getKey());
+            toiletList.add(t);
         }
         adapter.notifyDataSetChanged();
     }

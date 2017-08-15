@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Toilet implements Serializable{
 
+    private String id;
     private String location_name;
     private String location_address;
     private String description;
@@ -21,12 +22,18 @@ public class Toilet implements Serializable{
         this.description = comment;
     }
 
-    public String getComment() {
+    public String getId() {
+        return id;
+    }
+    public String getDescription() {
         return description;
     }
 
-    public void setComment(String comment) {
-        this.description = comment;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLocation_name() {

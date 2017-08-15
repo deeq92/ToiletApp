@@ -42,6 +42,7 @@ public class StartFragment extends Fragment {
             public void onClick(View view) {
                 Fragment rating = new AddToiletFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack("newlocation");
                 transaction.replace(R.id.main_content, rating).commit();
             }
         });

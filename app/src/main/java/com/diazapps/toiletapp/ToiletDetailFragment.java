@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class ToiletDetailFragment extends Fragment {
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.address) TextView address;
     @BindView(R.id.description) TextView description;
-    @BindView(R.id.button4) Button detailButton;
+    @BindView(R.id.review_button) Button reviewButton;
     private Unbinder unbinder;
 
     Toilet toilet;
@@ -55,6 +56,17 @@ public class ToiletDetailFragment extends Fragment {
         unbinder = ButterKnife.bind(this,view);
         name.setText(toilet.getLocation_name());
         address.setText(toilet.getLocation_address());
+        description.setText(toilet.getDescription());
+        rating.setText(String.valueOf(toilet.getRating()));
+        reviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment reviewToilet = ReviewToiletFragment.newInstance(toilet);
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.addToBackStack("review");
+                transaction.replace(R.id.main_content, reviewToilet).commit();
+            }
+        });
         return view;
     }
 

@@ -1,7 +1,6 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +13,6 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static android.provider.Contacts.SettingsColumns.KEY;
 
 /**
  * Created by Mellis on 8/12/2017.
@@ -42,6 +39,9 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
 
         Toilet t = toiletList.get(position);
         holder.toiletName.setText(t.getLocation_name());
+        holder.rating.setText(String.valueOf(t.getRating()));
+        holder.address.setText(t.getLocation_address());
+        holder.description.setText(t.getDescription());
         holder.toilet = toiletList.get(position);
         holder.itemView.setOnClickListener(holder);
     }
@@ -54,9 +54,9 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
     public static class ToiletHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Toilet toilet;
         @BindView(R.id.toiletName) TextView toiletName;
-        @BindView(R.id.textView2) TextView tv2;
-        @BindView(R.id.textView3) TextView tv3;
-        @BindView(R.id.textView4) TextView tv4;
+        @BindView(R.id.address) TextView address;
+        @BindView(R.id.rating) TextView rating;
+        @BindView(R.id.description) TextView description;
 
         public ToiletHolder(View v) {
             super(v);
