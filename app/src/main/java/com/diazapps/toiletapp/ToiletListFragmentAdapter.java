@@ -2,6 +2,8 @@ package com.diazapps.toiletapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
 
         Toilet t = toiletList.get(position);
         holder.toiletName.setText(t.getLocation_name());
+        holder.toilet = toiletList.get(position);
         holder.itemView.setOnClickListener(holder);
     }
 
@@ -62,6 +65,11 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
 
         @Override
         public void onClick(View v) {
+
+            Fragment toiletDetail = ToiletDetailFragment.newInstance(toilet);
+            FragmentTransaction transaction = ((MainActivity) context).getSupportFragmentManager().beginTransaction();
+            transaction.addToBackStack("detail");
+            transaction.replace(R.id.main_content, toiletDetail).commit();
         }
     }
 }

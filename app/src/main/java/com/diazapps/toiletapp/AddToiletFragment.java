@@ -26,7 +26,7 @@ public class AddToiletFragment extends Fragment {
     @BindView(R.id.newDescription) EditText description;
     @BindView(R.id.rating_text) TextView ratingText;
     @BindView(R.id.rating) RatingBar ratingBar;
-    @BindView(R.id.button2) Button submit;
+    @BindView(R.id.submitNewToilet) Button submit;
     private Unbinder unbinder;
 
     public AddToiletFragment() {

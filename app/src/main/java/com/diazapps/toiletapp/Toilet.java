@@ -1,8 +1,11 @@
 package com.diazapps.toiletapp;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Toilet {
+public class Toilet implements Serializable{
 
     private String location_name;
     private String location_address;
