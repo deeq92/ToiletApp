@@ -14,13 +14,20 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class AddToiletFragment extends Fragment {
 
-    EditText title, address, description;
-    TextView ratingText;
-    RatingBar ratingBar;
-    Button submit;
     DatabaseReference toiletsRef;
+    @BindView(R.id.newName) EditText title;
+    @BindView(R.id.newAddress) EditText address;
+    @BindView(R.id.newDescription) EditText description;
+    @BindView(R.id.rating_text) TextView ratingText;
+    @BindView(R.id.rating) RatingBar ratingBar;
+    @BindView(R.id.button2) Button submit;
+    private Unbinder unbinder;
 
     public AddToiletFragment() {
     }
@@ -29,12 +36,8 @@ public class AddToiletFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.add_toilet_fragment, container, false);
-        title = (EditText) view.findViewById(R.id.title);
-        address = (EditText) view.findViewById(R.id.address);
-        description = (EditText) view.findViewById(R.id.comment);
-        ratingText = (TextView) view.findViewById(R.id.rating_text);
-        ratingBar = (RatingBar) view.findViewById(R.id.rating);
-        submit = (Button) view.findViewById(R.id.button2);
+        //This is where all the @BindView(R.id.whatever) Things get initiated
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -56,9 +59,17 @@ public class AddToiletFragment extends Fragment {
                         ratingBar.getRating(),
                         address.getText().toString(),
                         description.getText().toString());
+
                 toiletsRef.addListenerForSingleValueEvent(new AddToiletVEListener(getActivity(), newToilet));
+                //Fragment map = new MapFragment();
+                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                //transaction.replace(R.id.main_content, map).commit();
             }
         });
     }
 
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 }

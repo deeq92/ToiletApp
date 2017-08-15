@@ -11,10 +11,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class StartFragment extends Fragment {
 
-    Button review;
-    Button map;
+    @BindView(R.id.review_button) Button addToilet;
+    @BindView(R.id.map_button) Button toiletList;
+    private Unbinder unbinder;
 
     public StartFragment() {
         // Required empty public constructor
@@ -24,8 +29,7 @@ public class StartFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.start_fragment, container, false);
-        review = (Button) view.findViewById(R.id.review_button);
-        map = (Button) view.findViewById(R.id.map_button);
+        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
@@ -33,7 +37,7 @@ public class StartFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        review.setOnClickListener(new View.OnClickListener() {
+        addToilet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment rating = new AddToiletFragment();
@@ -42,11 +46,12 @@ public class StartFragment extends Fragment {
             }
         });
 
-        map.setOnClickListener(new View.OnClickListener() {
+        toiletList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment listFragment = new ToiletListFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack("list");
                 transaction.replace(R.id.main_content, listFragment).commit();
             }
         });

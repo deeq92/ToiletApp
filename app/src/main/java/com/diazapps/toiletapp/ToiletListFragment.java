@@ -29,7 +29,7 @@ public class ToiletListFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters
      */
-    public static ToiletListFragment newInstance(String param1, String param2) {
+    public static ToiletListFragment newInstance() {
         ToiletListFragment fragment = new ToiletListFragment();
         return fragment;
     }
@@ -50,7 +50,7 @@ public class ToiletListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_toilet_list, container, false);
-        toiletRecyclerView = (RecyclerView) view.findViewById(R.id.toiletRecyclerView);
+        toiletRecyclerView = view.findViewById(R.id.toiletRecyclerView);
         toiletRecyclerView.setAdapter(toiletAdapter);
         toiletRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;

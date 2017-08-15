@@ -26,13 +26,12 @@ public class ToiletListVEListener implements ValueEventListener {
     public void onDataChange(DataSnapshot dataSnapshot) {
         toiletList.clear();
         for (DataSnapshot node : dataSnapshot.getChildren()) {
-            String title = (String) node.child("location_name").getValue();
-            String address = (String) node.child("location_address").getValue();
-            String description = (String) node.child("comment").getValue();
+            String name = (String) node.child("location_name").getValue();
             double rating = Double.valueOf(node.child("rating").getValue().toString());
+            String address = (String) node.child("location_address").getValue();
+            String description = (String) node.child("description").getValue();
             String postid = node.getKey();
-            toiletList.add(new Toilet(title, rating, address, description));
-            Log.d("ToiletList", title + " " + address);
+            toiletList.add(new Toilet(name, rating, address, description));
         }
         adapter.notifyDataSetChanged();
     }

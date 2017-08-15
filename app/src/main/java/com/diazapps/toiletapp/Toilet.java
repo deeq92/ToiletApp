@@ -6,7 +6,7 @@ public class Toilet {
 
     private String location_name;
     private String location_address;
-    private String comment;
+    private String description;
     private double location_long;
     private double location_lat;
     private double rating;
@@ -15,15 +15,15 @@ public class Toilet {
         location_name = title;
         this.rating = rating;
         location_address = address;
-        this.comment = comment;
+        this.description = comment;
     }
 
     public String getComment() {
-        return comment;
+        return description;
     }
 
     public void setComment(String comment) {
-        this.comment = comment;
+        this.description = comment;
     }
 
     public String getLocation_name() {

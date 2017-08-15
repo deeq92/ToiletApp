@@ -8,6 +8,8 @@ import com.google.firebase.database.ValueEventListener;
 
 /**
  * Created by Mellis on 8/11/2017.
+ *
+ * What else should happen when a toilet gets added by the client
  */
 
 public class AddToiletVEListener implements ValueEventListener {

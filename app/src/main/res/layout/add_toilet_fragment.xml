@@ -5,47 +5,47 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/pic"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/bathroom_example" />
-
-    <EditText
-        android:id="@+id/title"
+    <TextView
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/pic"
-        android:layout_centerHorizontal="true"
+        android:text="Thank you for adding a location"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/submitNewToilet"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/newName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Location Name"
         android:inputType="textCapSentences"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="Title" />
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
 
     <EditText
-        android:id="@+id/address"
+        android:id="@+id/newAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="3dp"
         android:inputType="textPostalAddress"
         android:textSize="18sp"
-        tools:text="Address" />
+        android:hint="Address"
+        android:layout_below="@+id/newName"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/rating_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/address"
+        android:layout_below="@+id/newAddress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="3dp"
         android:textSize="24sp"
         android:textStyle="bold"
-        tools:text="4.8" />
+        android:text="0.0" />
 
     <RatingBar
         android:id="@+id/rating"
@@ -55,19 +55,21 @@
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/comment"
+        android:id="@+id/newDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rating"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
         android:ems="10"
+        android:hint="Description"
         android:inputType="textCapSentences" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/submitNewToilet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/comment"
+        android:layout_below="@+id/newDescription"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
         android:text="Submit" />

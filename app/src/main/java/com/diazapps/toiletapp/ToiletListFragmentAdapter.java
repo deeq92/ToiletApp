@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 import static android.provider.Contacts.SettingsColumns.KEY;
 
 /**
@@ -47,17 +50,14 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
 
     public static class ToiletHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private Toilet toilet;
-        private TextView toiletName;
-        private TextView tv2;
-        private TextView tv3;
-        private TextView tv4;
+        @BindView(R.id.toiletName) TextView toiletName;
+        @BindView(R.id.textView2) TextView tv2;
+        @BindView(R.id.textView3) TextView tv3;
+        @BindView(R.id.textView4) TextView tv4;
 
         public ToiletHolder(View v) {
             super(v);
-            toiletName = (TextView) v.findViewById(R.id.toiletName);
-            tv2 = (TextView) v.findViewById(R.id.textView2);
-            tv3 = (TextView) v.findViewById(R.id.textView3);
-            tv4 = (TextView) v.findViewById(R.id.textView4);
+            ButterKnife.bind(this, v);
         }
 
         @Override
