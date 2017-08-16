@@ -1,6 +1,7 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
+import android.media.Rating;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,7 +24,7 @@ public class ReviewToiletFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
 
     Toilet toilet;
-    DatabaseReference toiletsRef;
+    DatabaseReference reviewsRef;
     @BindView(R.id.locationName) TextView title;
     @BindView(R.id.address) TextView address;
     @BindView(R.id.newDescription) EditText description;
@@ -66,7 +67,7 @@ public class ReviewToiletFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         title.setText(toilet.getLocation_name());
         address.setText(toilet.getLocation_address());
-        toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
+        reviewsRef = FirebaseDatabase.getInstance().getReference("Reviews");
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
@@ -76,13 +77,10 @@ public class ReviewToiletFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toilet newToilet = new Toilet(
-                        title.getText().toString(),
-                        ratingBar.getRating(),
-                        address.getText().toString(),
-                        description.getText().toString());
-
-                toiletsRef.addListenerForSingleValueEvent(new AddToiletVEListener(getActivity(), newToilet));
+                Review review = new Review();
+                review.setComment(description.getText().toString());
+                review.setRating(ratingBar.getRating());
+                reviewsRef.addListenerForSingleValueEvent(new AddReviewVEListener(getActivity(), review, toilet.getId()));
                 //Fragment map = new MapFragment();
                 //FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 //transaction.replace(R.id.main_content, map).commit();
