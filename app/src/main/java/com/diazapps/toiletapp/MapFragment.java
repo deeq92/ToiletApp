@@ -20,6 +20,7 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -69,7 +70,7 @@ public class MapFragment extends android.support.v4.app.Fragment {
                     public void onComplete(@NonNull Task<Location> task) {
                         location = task.getResult();
                         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,14)); //14 is the zoom (goes from 2-21)
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,14)); //14 is the zoom (goes from 2-21)
                     }
                 });
                 getToilets();
@@ -123,7 +124,8 @@ public class MapFragment extends android.support.v4.app.Fragment {
                 for(Toilet toilet : toiletList)
                 {
                     LatLng latLng = new LatLng(toilet.getLocation_lat(), toilet.getLocation_long());
-                    map.addMarker(new MarkerOptions().position(latLng).title(toilet.getLocation_name()));
+                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(toilet.getLocation_name()));
+                    marker.showInfoWindow(); //shows title without having to click the marker
                 }
             }
 
