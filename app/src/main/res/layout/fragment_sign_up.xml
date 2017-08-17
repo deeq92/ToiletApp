@@ -4,34 +4,50 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center|top"
-    tools:context="com.diazapps.toiletapp.LoginFragment">
+    tools:context="com.diazapps.toiletapp.SignUpFragment">
 
 
     <TextView
-        android:id="@+id/loginLabel"
+        android:id="@+id/signUpLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Sign Up" />
 
     <EditText
-        android:id="@+id/loginEmail"
+        android:id="@+id/signUpEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Email"
-        android:inputType="text|textCapWords" />
+        android:inputType="textWebEmailAddress" />
 
     <EditText
-        android:id="@+id/loginPassword"
+        android:id="@+id/signUpUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/signUpPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword" />
 
-    <Button
-        android:id="@+id/login"
+    <EditText
+        android:id="@+id/signUpPassword2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:ems="10"
+        android:hint="Re-enter Password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/signUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up" />
 </LinearLayout>

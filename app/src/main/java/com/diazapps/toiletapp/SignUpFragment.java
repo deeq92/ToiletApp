@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,7 +16,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -25,6 +29,12 @@ public class SignUpFragment extends Fragment {
     private Unbinder unbinder;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    @BindView(R.id.signUp) Button signup;
+    @BindView(R.id.signUpEmail) EditText email;
+    @BindView(R.id.signUpUsername) EditText username;
+    @BindView(R.id.signUpPassword) EditText pass1;
+    @BindView(R.id.signUpPassword2) EditText pass2;
+
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -45,6 +55,11 @@ public class SignUpFragment extends Fragment {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    String newUsername = username.getText().toString();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(newUsername).build();
+                    user.updateProfile(profileUpdates);
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -58,11 +73,10 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         unbinder = ButterKnife.bind(view, getActivity());
         return view;
     }
-
 
     private void signUp(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -85,6 +99,19 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newPass1 = pass1.getText().toString();
+                String newPass2 = pass2.getText().toString();
+                if(pass1.equals(pass2)) {
+                    String newEmail = email.getText().toString();
+                    if(newEmail != null){
+                        signUp(newEmail, newPass1);
+                    }
+                }
+            }
+        });
         mAuth.addAuthStateListener(mAuthListener);
     }
     @Override
@@ -93,6 +120,7 @@ public class SignUpFragment extends Fragment {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+        signup.setOnClickListener(null);
     }
     @Override public void onDestroyView() {
         super.onDestroyView();

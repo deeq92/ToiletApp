@@ -18,6 +18,8 @@ public class StartFragment extends Fragment {
     @BindView(R.id.review_button) Button addToilet;
     @BindView(R.id.map_button) Button map;
     @BindView(R.id.list_button) Button toiletList;
+    @BindView(R.id.login) Button login;
+    @BindView(R.id.signup) Button signup;
     private Unbinder unbinder;
 
     public StartFragment() {
@@ -63,6 +65,24 @@ public class StartFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.addToBackStack("newlocation");
                 transaction.replace(R.id.main_content, map).commit();
+            }
+        });
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment loginFrag = new LoginFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack("login");
+                transaction.replace(R.id.main_content, loginFrag).commit();
+            }
+        });
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment signupFrag = new SignUpFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack("signup");
+                transaction.replace(R.id.main_content, signupFrag).commit();
             }
         });
     }
