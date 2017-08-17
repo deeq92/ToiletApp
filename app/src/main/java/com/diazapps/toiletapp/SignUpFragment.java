@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,6 +17,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -25,6 +28,12 @@ public class SignUpFragment extends Fragment {
     private Unbinder unbinder;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    @BindView(R.id.signUp) Button signup;
+    @BindView(R.id.signUpEmail) EditText email;
+    @BindView(R.id.signUpUsername) EditText username;
+    @BindView(R.id.signUpPassword) EditText pass1;
+    @BindView(R.id.signUpPassword2) EditText pass2;
+
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -58,11 +67,24 @@ public class SignUpFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         unbinder = ButterKnife.bind(view, getActivity());
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newPass1 = pass1.getText().toString();
+                String newPass2 = pass2.getText().toString();
+                if(pass1.equals(pass2)) {
+                    String newEmail = email.getText().toString();
+                    String newUsername = username.getText().toString();
+                    if(newEmail != null && newUsername != null){
+                        signUp(newEmail, newPass1);
+                    }
+                }
+            }
+        });
         return view;
     }
-
 
     private void signUp(String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
