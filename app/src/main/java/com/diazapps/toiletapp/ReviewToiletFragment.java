@@ -1,7 +1,6 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
-import android.media.Rating;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;

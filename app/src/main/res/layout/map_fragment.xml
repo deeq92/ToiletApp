@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
-</RelativeLayout>
+        android:layout_height="match_parent">
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="50dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <RelativeLayout
+            android:id="@+id/map_suggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_alignParentBottom="false"
+                android:layout_centerInParent="false"
+                app:srcCompat="@android:color/holo_green_dark" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

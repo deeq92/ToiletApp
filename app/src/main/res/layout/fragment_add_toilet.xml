@@ -22,7 +22,6 @@
         android:inputType="textCapSentences"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="13dp" />
 
