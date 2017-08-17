@@ -41,7 +41,7 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
         holder.toiletName.setText(t.getLocation_name());
         holder.rating.setText(String.valueOf(t.getRating()));
         holder.address.setText(t.getLocation_address());
-        holder.description.setText(t.getDescription());
+        holder.comment.setText(t.getComment());
         holder.toilet = toiletList.get(position);
         holder.itemView.setOnClickListener(holder);
     }
@@ -56,7 +56,7 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
         @BindView(R.id.toiletName) TextView toiletName;
         @BindView(R.id.address) TextView address;
         @BindView(R.id.rating) TextView rating;
-        @BindView(R.id.description) TextView description;
+        @BindView(R.id.comment) TextView comment;
 
         public ToiletHolder(View v) {
             super(v);

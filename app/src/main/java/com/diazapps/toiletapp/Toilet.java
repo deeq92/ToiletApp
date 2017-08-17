@@ -1,36 +1,36 @@
 package com.diazapps.toiletapp;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Toilet implements Serializable{
 
     private String id;
     private String location_name;
     private String location_address;
-    private String description;
+    private String comment;
     private double location_long;
     private double location_lat;
     private double rating;
 
-    Toilet(String title, double rating, String address, String comment){
+    Toilet(String title, double rating, String address, String comment,
+           double location_lat, double location_long){
         location_name = title;
         this.rating = rating;
         location_address = address;
-        this.description = comment;
+        this.comment = comment;
+        this.location_lat = location_lat;
+        this.location_long = location_long;
     }
 
     public String getId() {
         return id;
     }
-    public String getDescription() {
-        return description;
+    public String getComment() {
+        return comment;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
     public void setId(String id) {
         this.id = id;

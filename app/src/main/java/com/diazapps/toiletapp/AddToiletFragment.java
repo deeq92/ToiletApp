@@ -6,6 +6,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -28,6 +30,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.SettingsClient;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +49,7 @@ import butterknife.Unbinder;
 public class AddToiletFragment extends Fragment {
 
     private FusedLocationProviderClient fusedLocationProviderClient;
+    Location location;
     DatabaseReference toiletsRef;
     @BindView(R.id.locationName) EditText title;
     @BindView(R.id.address) EditText address;
@@ -82,14 +87,27 @@ public class AddToiletFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Toilet newToilet = new Toilet(
-                        title.getText().toString(),
-                        ratingBar.getRating(),
-                        address.getText().toString(),
-                        description.getText().toString());
-                //setLatitudeAndLongtitude of the newToilet;
-                toiletsRef.addListenerForSingleValueEvent(new AddToiletVEListener(getActivity(), newToilet));
-                getFragmentManager().popBackStackImmediate();
+
+                fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        if (ActivityCompat.checkSelfPermission(getActivity(),
+                                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            Toast.makeText(getActivity(), "Please turn on your location.", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        location = task.getResult();
+                        final Toilet newToilet = new Toilet(
+                                title.getText().toString(),
+                                ratingBar.getRating(),
+                                address.getText().toString(),
+                                description.getText().toString(),
+                                location.getLatitude(),
+                                location.getLongitude());
+                        toiletsRef.addListenerForSingleValueEvent(new AddToiletVEListener(getActivity(), newToilet));
+                        getFragmentManager().popBackStackImmediate();
+                    }
+                });
             }
         });
     }

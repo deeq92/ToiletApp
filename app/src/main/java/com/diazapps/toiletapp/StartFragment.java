@@ -41,10 +41,10 @@ public class StartFragment extends Fragment {
         addToilet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment rating = new AddToiletFragment();
+                Fragment addToilet = new AddToiletFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.addToBackStack("newlocation");
-                transaction.replace(R.id.main_content, rating).commit();
+                transaction.replace(R.id.main_content, addToilet).commit();
             }
         });
 

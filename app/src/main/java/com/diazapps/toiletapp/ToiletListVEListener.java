@@ -29,8 +29,10 @@ public class ToiletListVEListener implements ValueEventListener {
             String name = (String) node.child("location_name").getValue();
             double rating = Double.valueOf(node.child("rating").getValue().toString());
             String address = (String) node.child("location_address").getValue();
-            String description = (String) node.child("description").getValue();
-            Toilet t = new Toilet(name, rating, address, description);
+            String comment = (String) node.child("comment").getValue();
+            double latitude = Double.valueOf(node.child("location_lat").getValue().toString());
+            double longitude = Double.valueOf(node.child("location_long").getValue().toString());
+            Toilet t = new Toilet(name, rating, address, comment, latitude, longitude);
             t.setId(node.getKey());
             toiletList.add(t);
         }

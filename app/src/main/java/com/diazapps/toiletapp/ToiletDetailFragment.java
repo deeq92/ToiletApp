@@ -1,7 +1,6 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,7 +22,7 @@ public class ToiletDetailFragment extends Fragment {
     @BindView(R.id.locationName) TextView name;
     @BindView(R.id.rating) TextView rating;
     @BindView(R.id.address) TextView address;
-    @BindView(R.id.description) TextView description;
+    @BindView(R.id.comment) TextView comment;
     @BindView(R.id.review_button) Button reviewButton;
     private Unbinder unbinder;
 
@@ -57,7 +56,7 @@ public class ToiletDetailFragment extends Fragment {
         unbinder = ButterKnife.bind(this,view);
         name.setText(toilet.getLocation_name());
         address.setText(toilet.getLocation_address());
-        description.setText(toilet.getDescription());
+        comment.setText(toilet.getComment());
         rating.setText(String.valueOf(toilet.getRating()));
 
         reviewButton.setOnClickListener(new View.OnClickListener() {

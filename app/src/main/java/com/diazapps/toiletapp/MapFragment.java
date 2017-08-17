@@ -52,9 +52,7 @@ public class MapFragment extends android.support.v4.app.Fragment {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
                 if (ActivityCompat.checkSelfPermission(getActivity(),
-                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(getActivity(),
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
