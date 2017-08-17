@@ -2,6 +2,10 @@ package com.diazapps.toiletapp;
 
 import android.app.Fragment;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +23,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -124,8 +130,14 @@ public class MapFragment extends android.support.v4.app.Fragment {
                 for(Toilet toilet : toiletList)
                 {
                     LatLng latLng = new LatLng(toilet.getLocation_lat(), toilet.getLocation_long());
-                    Marker marker = map.addMarker(new MarkerOptions().position(latLng).title(toilet.getLocation_name()));
+                    Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.map_icon);
+                    Bitmap b_resized = Bitmap.createScaledBitmap(b, 72, 72, false); //resize original image
+                    Marker marker = map.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .title(toilet.getLocation_name())
+                            .icon(BitmapDescriptorFactory.fromBitmap(b_resized)));
                     marker.showInfoWindow(); //shows title without having to click the marker
+                    marker.setTag(toilet); //store the toilet object in the marker
                 }
             }
 
