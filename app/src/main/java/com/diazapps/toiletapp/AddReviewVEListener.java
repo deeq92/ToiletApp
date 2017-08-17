@@ -21,7 +21,7 @@ public class AddReviewVEListener implements ValueEventListener {
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        dataSnapshot.getRef().child(toilet).setValue(review);
+        dataSnapshot.getRef().child(toilet).push().setValue(review);
     }
 
     @Override
