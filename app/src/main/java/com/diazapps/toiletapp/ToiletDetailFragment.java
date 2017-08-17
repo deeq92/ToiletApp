@@ -4,11 +4,18 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,9 +31,12 @@ public class ToiletDetailFragment extends Fragment {
     @BindView(R.id.address) TextView address;
     @BindView(R.id.comment) TextView comment;
     @BindView(R.id.review_button) Button reviewButton;
+    @BindView(R.id.reviewListFrag) FrameLayout reviewListFragLayout;
     private Unbinder unbinder;
 
     Toilet toilet;
+    private ArrayList<Review> reviewList;
+    private ReviewListAdapter reviewAdapter;
 
     public ToiletDetailFragment() {
         // Required empty public constructor
@@ -68,6 +78,20 @@ public class ToiletDetailFragment extends Fragment {
                 transaction.replace(R.id.main_content, reviewToilet).commit();
             }
         });
+
+
+        reviewList = new ArrayList<>();
+        reviewAdapter = new ReviewListAdapter(getContext(), reviewList);
+        DatabaseReference reviewsRef = FirebaseDatabase.getInstance().getReference("Reviews").child(toilet.getId());
+        Log.d("TTT"," : " + toilet.getId());
+        ReviewListVEListener reviewListVEListener = new ReviewListVEListener(getContext(), reviewList, reviewAdapter);
+        reviewsRef.addListenerForSingleValueEvent(reviewListVEListener);
+
+        Fragment reviewListFrag = ReviewListFragment.newInstance(toilet);
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.addToBackStack("reviewList");
+        transaction.replace(R.id.reviewListFrag, reviewListFrag).commit();
+
         return view;
     }
 
