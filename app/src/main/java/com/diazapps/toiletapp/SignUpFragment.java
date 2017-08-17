@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +55,11 @@ public class SignUpFragment extends Fragment {
                 if (user != null) {
                     // User is signed in
                     Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+
+                    String newUsername = username.getText().toString();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setDisplayName(newUsername).build();
+                    user.updateProfile(profileUpdates);
                 } else {
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
@@ -69,20 +75,6 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
         unbinder = ButterKnife.bind(view, getActivity());
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String newPass1 = pass1.getText().toString();
-                String newPass2 = pass2.getText().toString();
-                if(pass1.equals(pass2)) {
-                    String newEmail = email.getText().toString();
-                    String newUsername = username.getText().toString();
-                    if(newEmail != null && newUsername != null){
-                        signUp(newEmail, newPass1);
-                    }
-                }
-            }
-        });
         return view;
     }
 
@@ -107,6 +99,19 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newPass1 = pass1.getText().toString();
+                String newPass2 = pass2.getText().toString();
+                if(pass1.equals(pass2)) {
+                    String newEmail = email.getText().toString();
+                    if(newEmail != null){
+                        signUp(newEmail, newPass1);
+                    }
+                }
+            }
+        });
         mAuth.addAuthStateListener(mAuthListener);
     }
     @Override
@@ -115,6 +120,7 @@ public class SignUpFragment extends Fragment {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
+        signup.setOnClickListener(null);
     }
     @Override public void onDestroyView() {
         super.onDestroyView();
