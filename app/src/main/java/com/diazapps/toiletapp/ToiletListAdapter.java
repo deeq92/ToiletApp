@@ -18,12 +18,12 @@ import butterknife.ButterKnife;
  * Created by Mellis on 8/12/2017.
  */
 
-public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFragmentAdapter.ToiletHolder> {
+public class ToiletListAdapter extends RecyclerView.Adapter<ToiletListAdapter.ToiletHolder> {
 
     private ArrayList<Toilet> toiletList;
     private static Context context;
 
-    public ToiletListFragmentAdapter(Context ctx, ArrayList<Toilet> toiletList){
+    public ToiletListAdapter(Context ctx, ArrayList<Toilet> toiletList){
         this.toiletList = toiletList;
         context = ctx;
     }
@@ -35,7 +35,7 @@ public class ToiletListFragmentAdapter extends RecyclerView.Adapter<ToiletListFr
     }
 
     @Override
-    public void onBindViewHolder(ToiletListFragmentAdapter.ToiletHolder holder, int position) {
+    public void onBindViewHolder(ToiletListAdapter.ToiletHolder holder, int position) {
 
         Toilet t = toiletList.get(position);
         holder.toiletName.setText(t.getLocation_name());

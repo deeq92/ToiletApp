@@ -1,7 +1,6 @@
 package com.diazapps.toiletapp;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,10 +12,10 @@ public class ToiletListVEListener implements ValueEventListener {
 
     private final ArrayList<Toilet> toiletList;
     private final Context context;
-    ToiletListFragmentAdapter adapter;
+    ToiletListAdapter adapter;
 
     //Used to get all toilets
-    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets, ToiletListFragmentAdapter adapter){
+    public ToiletListVEListener(Context context, ArrayList<Toilet> toilets, ToiletListAdapter adapter){
         this.context = context;
         toiletList = toilets;
         this.adapter = adapter;

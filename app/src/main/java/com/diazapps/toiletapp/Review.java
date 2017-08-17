@@ -1,6 +1,10 @@
 package com.diazapps.toiletapp;
 
 class Review {
+    public Review(double rating, String comment) {
+        this.rating = rating;
+        this.comment = comment;
+    }
 
     private double rating;
     private String comment;

@@ -1,7 +1,5 @@
 package com.diazapps.toiletapp;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 public class ToiletListFragment extends Fragment {
 
     RecyclerView toiletRecyclerView;
-    ToiletListFragmentAdapter toiletAdapter;
+    ToiletListAdapter toiletAdapter;
     ArrayList<Toilet> toiletList;
 
     public ToiletListFragment() {
@@ -39,7 +37,7 @@ public class ToiletListFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         toiletList = new ArrayList<>();
-        toiletAdapter = new ToiletListFragmentAdapter(getContext(), toiletList);
+        toiletAdapter = new ToiletListAdapter(getContext(), toiletList);
         DatabaseReference toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
         ToiletListVEListener toiletListVEListener = new ToiletListVEListener(getContext(), toiletList, toiletAdapter);
         toiletsRef.addListenerForSingleValueEvent(toiletListVEListener);

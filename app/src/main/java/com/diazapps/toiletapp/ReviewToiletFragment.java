@@ -77,13 +77,9 @@ public class ReviewToiletFragment extends Fragment {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Review review = new Review();
-                review.setComment(description.getText().toString());
-                review.setRating(ratingBar.getRating());
+                Review review = new Review(ratingBar.getRating(), description.getText().toString());
                 reviewsRef.addListenerForSingleValueEvent(new AddReviewVEListener(getActivity(), review, toilet.getId()));
-                //Fragment map = new MapFragment();
-                //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                //transaction.replace(R.id.main_content, map).commit();
+                getFragmentManager().popBackStack();
             }
         });
     }
