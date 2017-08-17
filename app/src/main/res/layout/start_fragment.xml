@@ -20,13 +20,27 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/review_button"
+        android:id="@+id/list_button"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="false"
         android:layout_below="@+id/map_button"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
+        android:backgroundTint="@color/colorPrimary2"
+        android:fontFamily="sans-serif"
+        android:text="Bathroom List"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/review_button"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="false"
+        android:layout_below="@+id/list_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:backgroundTint="@color/colorPrimary3"
         android:fontFamily="sans-serif"
         android:text="Add New Toilet"

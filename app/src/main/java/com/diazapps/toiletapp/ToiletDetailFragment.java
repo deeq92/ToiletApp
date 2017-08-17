@@ -17,6 +17,7 @@ import butterknife.Unbinder;
 
 
 public class ToiletDetailFragment extends Fragment {
+
     private static final String TOILET = "toilet_key";
 
     @BindView(R.id.locationName) TextView name;
@@ -58,6 +59,7 @@ public class ToiletDetailFragment extends Fragment {
         address.setText(toilet.getLocation_address());
         description.setText(toilet.getDescription());
         rating.setText(String.valueOf(toilet.getRating()));
+
         reviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

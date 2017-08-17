@@ -18,7 +18,8 @@ import butterknife.Unbinder;
 public class StartFragment extends Fragment {
 
     @BindView(R.id.review_button) Button addToilet;
-    @BindView(R.id.map_button) Button toiletList;
+    @BindView(R.id.map_button) Button map;
+    @BindView(R.id.list_button) Button toiletList;
     private Unbinder unbinder;
 
     public StartFragment() {
@@ -54,6 +55,16 @@ public class StartFragment extends Fragment {
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.addToBackStack("list");
                 transaction.replace(R.id.main_content, listFragment).commit();
+            }
+        });
+
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment map = new MapFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.addToBackStack("newlocation");
+                transaction.replace(R.id.main_content, map).commit();
             }
         });
     }
