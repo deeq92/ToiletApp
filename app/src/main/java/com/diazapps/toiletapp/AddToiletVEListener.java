@@ -15,14 +15,24 @@ import com.google.firebase.database.ValueEventListener;
 public class AddToiletVEListener implements ValueEventListener {
 
     Toilet toiletToAdd;
+    String overwrite;
 
     public AddToiletVEListener(Context activityContext, Toilet newToilet){
         toiletToAdd = newToilet;
+        overwrite = null;
+    }
+    public AddToiletVEListener(Context activityContext, Toilet newToilet, String id){
+        toiletToAdd = newToilet;
+        overwrite = id;
     }
 
     @Override
     public void onDataChange(DataSnapshot dataSnapshot) {
-        dataSnapshot.getRef().push().setValue(toiletToAdd);
+        if(overwrite != null) {
+            dataSnapshot.getRef().child(overwrite).setValue(toiletToAdd);
+        }else {
+            dataSnapshot.getRef().push().setValue(toiletToAdd);
+        }
     }
 
     @Override
