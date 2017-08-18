@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -32,19 +36,34 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MapFragment extends android.support.v4.app.Fragment {
 
     private ArrayList<Toilet> toiletList; //holds all map locations
-    private MapView mapView;
+    @BindView(R.id.map) MapView mapView;
     private FusedLocationProviderClient locationClient;
     private Location location;
     GoogleMap map;
+    BottomSheetAdapter bottomSheetAdapter;
+    @BindView(R.id.nearby_list) RecyclerView nearby_list;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        toiletList = new ArrayList<>();
+        bottomSheetAdapter = new BottomSheetAdapter(getContext(), toiletList);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.map_fragment, container, false);
-        mapView = (MapView) view.findViewById(R.id.map);
+        ButterKnife.bind(this, view);
+        nearby_list.setAdapter(bottomSheetAdapter);
+        nearby_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         mapView.onCreate(savedInstanceState);
         return view;
     }
@@ -53,7 +72,6 @@ public class MapFragment extends android.support.v4.app.Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        toiletList = new ArrayList<>();
         locationClient = LocationServices.getFusedLocationProviderClient(getActivity());
 
         mapView.getMapAsync(new OnMapReadyCallback() {
@@ -133,6 +151,7 @@ public class MapFragment extends android.support.v4.app.Fragment {
                     marker.showInfoWindow(); //shows title without having to click the marker
                     marker.setTag(toilet); //store the toilet object in the marker
                 }
+                bottomSheetAdapter.notifyDataSetChanged();
             }
 
             @Override

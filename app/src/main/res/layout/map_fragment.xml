@@ -20,7 +20,8 @@
     <ScrollView
         android:id="@+id/bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
+        android:fillViewport="true"
         app:behavior_hideable="false"
         app:behavior_peekHeight="50dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
@@ -28,16 +29,28 @@
         <RelativeLayout
             android:id="@+id/map_suggestions"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
             android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/test"
+            <TextView
+                android:id="@+id/nearby_text"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:background="@color/colorPrimary"
+                android:gravity="center_horizontal"
+                android:text="Nearby"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/nearby_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentBottom="false"
-                android:layout_centerInParent="false"
-                app:srcCompat="@android:color/holo_green_dark" />
+                android:layout_alignParentEnd="false"
+                android:layout_below="@+id/nearby_text" />
 
         </RelativeLayout>
     </ScrollView>

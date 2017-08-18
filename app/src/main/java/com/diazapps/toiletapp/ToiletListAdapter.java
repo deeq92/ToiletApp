@@ -14,10 +14,6 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Mellis on 8/12/2017.
- */
-
 public class ToiletListAdapter extends RecyclerView.Adapter<ToiletListAdapter.ToiletHolder> {
 
     private ArrayList<Toilet> toiletList;
