@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -45,8 +46,10 @@ public class MapFragment extends android.support.v4.app.Fragment {
     @BindView(R.id.map) MapView mapView;
     private FusedLocationProviderClient locationClient;
     private Location location;
-    GoogleMap map;
-    BottomSheetAdapter bottomSheetAdapter;
+    static GoogleMap map;
+    @BindView(R.id.bottom_sheet) View bottomSheet;
+    private BottomSheetAdapter bottomSheetAdapter;
+    static BottomSheetBehavior bottomSheetBehavior;
     @BindView(R.id.nearby_list) RecyclerView nearby_list;
 
     @Override
@@ -65,6 +68,8 @@ public class MapFragment extends android.support.v4.app.Fragment {
         nearby_list.setAdapter(bottomSheetAdapter);
         nearby_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         mapView.onCreate(savedInstanceState);
+        bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
+
         return view;
     }
 
@@ -87,7 +92,7 @@ public class MapFragment extends android.support.v4.app.Fragment {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         location = task.getResult();
-                        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,14)); //14 is the zoom (goes from 2-21)
                     }
                 });

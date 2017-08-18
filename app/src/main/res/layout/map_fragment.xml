@@ -23,7 +23,7 @@
         android:layout_height="300dp"
         android:fillViewport="true"
         app:behavior_hideable="false"
-        app:behavior_peekHeight="50dp"
+        app:behavior_peekHeight="25dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <RelativeLayout
@@ -36,10 +36,10 @@
             <TextView
                 android:id="@+id/nearby_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="25dp"
                 android:layout_centerHorizontal="true"
                 android:background="@color/colorPrimary"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:text="Nearby"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />
