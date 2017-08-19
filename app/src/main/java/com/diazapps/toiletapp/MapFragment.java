@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -88,14 +89,20 @@ public class MapFragment extends android.support.v4.app.Fragment {
                     return;
                 }
                 googleMap.setMyLocationEnabled(true);
+
                 locationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
                     public void onComplete(@NonNull Task<Location> task) {
                         location = task.getResult();
-                        final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                        try
+                        {
+                            final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,14)); //14 is the zoom (goes from 2-21)
+                        }
+                        catch (Exception e) {}
                     }
                 });
+
                 getToilets();
             }
 
