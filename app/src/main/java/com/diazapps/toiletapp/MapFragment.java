@@ -168,7 +168,7 @@ public class MapFragment extends android.support.v4.app.Fragment {
                     try{
                         //Will only add to suggested list if distance to the toilet is 1 mile or closer
                         Double distance_away = SphericalUtil.computeDistanceBetween(locationLatlng, latLng);
-                        if(distance_away < 1700)
+                        if(distance_away < 5100)
                         {
                             toilet.setDistance_away(distance_away * 0.000621);
                             suggestList.add(toilet);
