@@ -15,8 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -35,6 +33,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.SphericalUtil;
 
 import java.util.ArrayList;
 
@@ -44,6 +43,7 @@ import butterknife.ButterKnife;
 public class MapFragment extends android.support.v4.app.Fragment {
 
     private ArrayList<Toilet> toiletList; //holds all map locations
+    private ArrayList<Toilet> suggestList;
     @BindView(R.id.map) MapView mapView;
     private FusedLocationProviderClient locationClient;
     private Location location;
@@ -51,14 +51,16 @@ public class MapFragment extends android.support.v4.app.Fragment {
     @BindView(R.id.bottom_sheet) View bottomSheet;
     private BottomSheetAdapter bottomSheetAdapter;
     static BottomSheetBehavior bottomSheetBehavior;
-    @BindView(R.id.nearby_list) RecyclerView nearby_list;
+    @BindView(R.id.suggest_list) RecyclerView suggest_list;
+    LatLng locationLatlng;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         toiletList = new ArrayList<>();
-        bottomSheetAdapter = new BottomSheetAdapter(getContext(), toiletList);
+        suggestList = new ArrayList<>();
+        bottomSheetAdapter = new BottomSheetAdapter(getContext(), suggestList);
     }
 
     @Nullable
@@ -66,8 +68,8 @@ public class MapFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.map_fragment, container, false);
         ButterKnife.bind(this, view);
-        nearby_list.setAdapter(bottomSheetAdapter);
-        nearby_list.setLayoutManager(new LinearLayoutManager(getActivity()));
+        suggest_list.setAdapter(bottomSheetAdapter);
+        suggest_list.setLayoutManager(new LinearLayoutManager(getActivity()));
         mapView.onCreate(savedInstanceState);
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
 
@@ -96,10 +98,10 @@ public class MapFragment extends android.support.v4.app.Fragment {
                         location = task.getResult();
                         try
                         {
-                            final LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,14)); //14 is the zoom (goes from 2-21)
+                            locationLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(locationLatlng,14)); //14 is the zoom (goes from 2-21)
                         }
-                        catch (Exception e) {}
+                        catch (Exception e) {e.printStackTrace();}
                     }
                 });
 
@@ -136,6 +138,8 @@ public class MapFragment extends android.support.v4.app.Fragment {
     private void getToilets()
     {
         toiletList.clear();
+        suggestList.clear();
+
         DatabaseReference toiletsRef = FirebaseDatabase.getInstance().getReference("Toilets");
         toiletsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -160,10 +164,22 @@ public class MapFragment extends android.support.v4.app.Fragment {
                             .position(latLng)
                             .title(toilet.getLocation_name())
                             .icon(BitmapDescriptorFactory.fromBitmap(b_resized)));
-                    marker.showInfoWindow(); //shows title without having to click the marker
                     marker.setTag(toilet); //store the toilet object in the marker
+                    try{
+                        //Will only add to suggested list if distance to the toilet is 1 mile or closer
+                        Double distance_away = SphericalUtil.computeDistanceBetween(locationLatlng, latLng);
+                        if(distance_away < 1700)
+                        {
+                            toilet.setDistance_away(distance_away * 0.000621);
+                            suggestList.add(toilet);
+                        }
+                    }
+                    catch(Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+                    bottomSheetAdapter.notifyDataSetChanged();
                 }
-                bottomSheetAdapter.notifyDataSetChanged();
             }
 
             @Override

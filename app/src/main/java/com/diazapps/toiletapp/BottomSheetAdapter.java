@@ -14,6 +14,7 @@ import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -24,6 +25,7 @@ public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.
 
     private static ArrayList<Toilet> toiletList;
     private static Context c;
+    DecimalFormat decimalFormat = new DecimalFormat("0.0");
 
     public BottomSheetAdapter (Context ctx, ArrayList<Toilet> toilets)
     {
@@ -41,8 +43,9 @@ public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.
     public void onBindViewHolder(Itemholder holder, int position) {
 
         holder.t = toiletList.get(position);
-        holder.title.setText(toiletList.get(position).getLocation_name());
-        holder.rating.setText(String.valueOf(toiletList.get(position).getRating()));
+        holder.title.setText(holder.t.getLocation_name());
+        holder.rating.setText(String.valueOf(holder.t.getRating()));
+        holder.distance.setText(String.valueOf(decimalFormat.format(holder.t.getDistance_away())) + " miles away");
         holder.itemView.setOnClickListener(holder);
 
     }
@@ -58,6 +61,7 @@ public class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapter.
         @BindView(R.id.pic) ImageView pic;
         @BindView(R.id.title) TextView title;
         @BindView(R.id.rating) TextView rating;
+        @BindView(R.id.distance) TextView distance;
 
 
         public Itemholder(View v) {

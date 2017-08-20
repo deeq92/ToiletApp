@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/pic"
@@ -32,9 +33,21 @@
         android:layout_below="@+id/title"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/pic"
         android:textColor="@android:color/black"
         tools:text="Rating" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignStart="@+id/rating"
+        android:layout_below="@+id/rating"
+        android:layout_marginRight="10dp"
+        android:textColor="@android:color/black"
+        tools:text="10 miles away" />
 
 </RelativeLayout>

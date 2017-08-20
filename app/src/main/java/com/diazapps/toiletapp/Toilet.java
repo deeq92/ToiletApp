@@ -11,6 +11,7 @@ public class Toilet implements Serializable{
     private double location_long;
     private double location_lat;
     private double rating;
+    private double distance_away;
 
     Toilet(String title, double rating, String address, String comment,
            double location_lat, double location_long){
@@ -79,4 +80,11 @@ public class Toilet implements Serializable{
     }
 
 
+    public double getDistance_away() {
+        return distance_away;
+    }
+
+    public void setDistance_away(double distance_away) {
+        this.distance_away = distance_away;
+    }
 }
